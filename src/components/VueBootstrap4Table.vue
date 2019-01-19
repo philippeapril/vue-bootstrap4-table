@@ -5,7 +5,7 @@
         <div class="card-header text-center" v-if="card_mode">
             {{card_title}}
         </div>
-        <div :class="{'card-body':card_mode}">
+        <div :class="{'card-block':card_mode}">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -17,7 +17,7 @@
                                             <!-- global search text starts here -->
                                             <div class="col-md-6 input-group vbt-global-search" v-if="global_search.visibility">
                                                 <input ref="global_search" type="text" class="form-control" :placeholder="global_search.placeholder" @keyup.stop="updateGlobalSearch($event)" value="">
-                                                <div class="input-group-append vbt-global-search-clear" @click="clearGlobalSearch">
+                                                <div class="input-group-addon vbt-global-search-clear" @click="clearGlobalSearch">
                                                     <span class="input-group-text">
                                                         <slot name="clear-global-search-icon">
                                                             &#x24E7;
@@ -1184,7 +1184,7 @@ export default {
         -ms-user-select: none;      /* IE 10+ */
         user-select: none;          /* Likely future */
     }
-    .input-group-append.vbt-global-search-clear {
+    .input-group-addon.vbt-global-search-clear {
         cursor: pointer;
     }
 </style>

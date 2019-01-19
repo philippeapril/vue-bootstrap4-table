@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <!-- Number of rows per page starts here -->
-                <div class="dropdown show vbt-per-page-dropdown">
+                <div class="dropdown vbt-per-page-dropdown">
                     <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{per_page}}
                     </a>
@@ -57,7 +57,7 @@
                 </div>
                 <!-- Number of rows per page ends here -->
 
-                <div class="input-group col-sm-2">
+                <div class="input-group col-sm-4">
                     <input type="number" class="form-control" :min="start" :max="totalPages" placeholder="Go to page" @keyup.enter="gotoPage" v-model.number="go_to_page">
                 </div>
             </ul>
