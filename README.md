@@ -443,13 +443,13 @@ You can inject your favorite sort icons via slots.
 ```vue
 ...
 <vue-bootstrap4-table :rows="rows" :columns="columns" :config="config">
-    <template slot="sort-asc-icon">
+    <template slot="sort-asc-icon" slot-scope="props">
         <i class="fas fa-sort-up"></i>
     </template>
-    <template slot="sort-desc-icon">
+    <template slot="sort-desc-icon" slot-scope="props">
         <i class="fas fa-sort-down"></i>
     </template>
-    <template slot="no-sort-icon">
+    <template slot="no-sort-icon" slot-scope="props">
         <i class="fas fa-sort"></i>
     </template>
 </vue-bootstrap4-table>
