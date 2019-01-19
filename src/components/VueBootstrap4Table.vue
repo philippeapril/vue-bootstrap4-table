@@ -29,13 +29,13 @@
 
                                             <!-- refresh & reset button starts here -->
                                             <div class="col-md-6">
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button v-if="show_refresh_button" type="button" class="btn btn-secondary" @click="$emit('refresh-data')">
+                                                <div class="btn-group" role="group" aria-label="Table Actions buttons">
+                                                    <button v-if="show_refresh_button" type="button" class="btn btn-secondary vbt-refresh-button" @click="$emit('refresh-data')">
                                                         <slot name="refresh-button-text">
                                                             Refresh
                                                         </slot>
                                                     </button>
-                                                    <button type="button" v-if="show_reset_button" class="btn btn-secondary" @click="resetQuery">
+                                                    <button type="button" v-if="show_reset_button" class="btn btn-secondary vbt-reset-button" @click="resetQuery">
                                                         <slot name="reset-button-text">
                                                             Reset Query
                                                         </slot>
@@ -168,12 +168,12 @@
                                                     </template>
                                                 </slot>
                                             </template>
-                                            <template v-if="pagination_info && selected_rows_info">
+                                            <template v-if="selected_rows_info && pagination_info && (checkbox_rows || rows_selectable)">
                                                 <slot name="pagination-selected-rows-separator">
                                                     |
                                                 </slot>
                                             </template>
-                                            <template v-if="selected_rows_info">
+                                            <template v-if="selected_rows_info && (checkbox_rows || rows_selectable)">
                                                 <slot name="selected-rows-info" :selectedItemsCount="selectedItemsCount">
                                                     {{selectedItemsCount}} rows selected
                                                 </slot>

@@ -1,6 +1,6 @@
 {
     "name": "vue-bootstrap4-table",
-    "version": "1.0.20",
+    "version": "1.0.21",
     "main": "dist/vue-bootstrap4-table.umd.js",
     "module": "dist/vue-bootstrap4-table.esm.js",
     "unpkg": "dist/vue-bootstrap4-table.min.js",
@@ -43,7 +43,6 @@
         "copy-webpack-plugin": "^4.0.1",
         "cross-env": "^5.0.1",
         "css-loader": "^0.28.0",
-        "expect": "^23.6.0",
         "extract-text-webpack-plugin": "^3.0.0",
         "file-loader": "^1.1.4",
         "friendly-errors-webpack-plugin": "^1.6.1",

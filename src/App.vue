@@ -140,8 +140,8 @@
                         case_sensitive: false // default false
                     },
                     per_page_options: [5, 10, 20, 30],
-                    show_reset_button: false,
-                    show_refresh_button: false,
+                    show_reset_button: true,
+                    show_refresh_button: true,
                     server_mode: false,
                     card_mode: false,
                     selected_rows_info: true
@@ -262,5 +262,8 @@
 </script>
 
 <style>
+.vbt-row-selected {
+    background-color: rgb(131, 102, 102) !important
+}
 
 </style>
