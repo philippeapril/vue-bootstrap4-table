@@ -68,7 +68,7 @@
                                                         @select-all-row-checkbox="selectAllCheckbox"/>
 
                             <slot name="columns" :columns="vbt_columns">
-                                <th v-for="(column, key, index) in vbt_columns" :key="index" v-on="isSortableColumn(column) ? { click: () => updateSortQuery(column) } : {}" class="vbt-column-header" :class="columnClasses(column)">
+                              <th v-for="(column, key, index) in vbt_columns" :key="index" v-on="isSortableColumn(column) ? { click: () => updateSortQuery(column) } : {}" class="vbt-column-header" :class="columnClasses(column)" :style="{ minWidth: columnWidth(column) }">
                                     <slot :name="'column_' + getCellSlotName(column)" :column="column">
                                         {{column.label}}
                                     </slot>
@@ -924,6 +924,13 @@ export default {
             // adding classes for sortable column - ends here
 
             return classes;
+        },
+
+        columnWidth(column) {
+          if (has(column, "width")) {
+            return `${column.width}px`;
+          }
+          return nil;
         },
 
         handleShiftKey() {
