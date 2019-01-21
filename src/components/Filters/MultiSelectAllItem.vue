@@ -1,10 +1,11 @@
 <template>
     <div>
         <a class="dropdown-item" href="" @click.prevent="handleSelect()">
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input vbt-checkbox" v-model="option_selected"/>
-                <label class="custom-control-label">{{text}}</label>
-            </div>
+            <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input vbt-checkbox" v-model="option_selected"/>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{text}}</span>
+            </label>
         </a>
     </div>
 </template>
