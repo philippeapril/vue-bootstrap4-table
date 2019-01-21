@@ -5,10 +5,11 @@
                 <input type="radio" class="custom-control-input" v-model="selected_value" :value="option.value">
                 <label class="custom-control-label">{{option.name}}</label>
             </div>
-            <div v-else class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input vbt-checkbox" v-model="option_selected"/>
-                <label class="custom-control-label">{{option.name}}</label>
-            </div>
+            <label v-else class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input vbt-checkbox" v-model="option_selected"/>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{option.name}}</span>
+            </label>
         </a>
     </div>
 </template>
