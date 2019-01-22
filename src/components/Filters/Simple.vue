@@ -1,6 +1,6 @@
 <template>
-    <div class="input-group">
-        <input ref="simple_filter_input" type="text" class="form-control" :placeholder="column.filter.placeholder" @keyup.stop="updateFilter($event)">
+    <div class="input-group input-group-sm">
+        <input ref="simple_filter_input" type="text" class="form-control form-control-sm" :placeholder="column.filter.placeholder" @keyup.stop="updateFilter($event)">
         <div class="input-group-addon vbt-simple-filter-clear" @click="clearFilter">
             <span class="input-group-text">
                 <slot name="clear-simple-filter-icon">
