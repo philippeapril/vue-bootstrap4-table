@@ -1117,6 +1117,21 @@ export default {
                     this.filter();
                 }
 
+                // Build options for column
+                const columnsWithAutoOptions = this.vbt_columns.filter(column => column.filter && column.filter.type === 'select' && column.filter.mode === 'multi' && column.filter.auto_options);
+                columnsWithAutoOptions.forEach((column) => {
+                  const list = [];
+                  this.rows.forEach((row) => {
+                    if (row[column.name] && !list.includes(row[column.name])) {
+                      list.push(row[column.name]);
+                    }
+                  });
+                  list.sort();
+
+                  // Find and update column options
+                  const colIndex = this.columns.findIndex(e => e.name === column.name);
+                  this.$set(this.columns[colIndex].filter, 'options', list.map(name => ({ name, value: name })));
+                });
             },
             deep: true
         },
