@@ -6,7 +6,7 @@
             {{card_title}}
         </div>
         <div :class="{'card-block':card_mode}">
-            <div class="table-responsive">
+          <div class="table-responsive" :style="{ minHeight: table_min_height }">
                 <table class="table table-striped table-bordered mb-2">
                     <thead>
                         <tr v-if="showToolsRow">
@@ -351,7 +351,8 @@ export default {
             total_rows: 0,
             card_mode: true,
             selected_rows_info: false,
-            lastSelectedItemIndex: null
+            lastSelectedItemIndex: null,
+            table_min_height: null,
         };
     },
     mounted() {
@@ -379,6 +380,8 @@ export default {
         this.paginateFilter();
         this.handleShiftKey();
 
+        // Build options for columns
+        this.buildOptionsForColumns();
     },
     components: {
         Row,
@@ -433,6 +436,8 @@ export default {
             this.card_mode = (has(this.config, 'card_mode')) ? (this.config.card_mode) : true;
 
             this.selected_rows_info = (has(this.config, 'card_mode')) ? (this.config.selected_rows_info) : false;
+
+            this.table_min_height = (has(this.config, 'table_min_height')) ? (this.config.table_min_height) : true;
 
         },
 
@@ -955,7 +960,26 @@ export default {
                     }
                 });
             });
-        }
+        },
+
+        buildOptionsForColumns() {
+                const columnsWithAutoOptions = this.vbt_columns.filter(column => column.filter && column.filter.type === 'select' && column.filter.mode === 'multi' && column.filter.auto_options);
+                columnsWithAutoOptions.forEach((column) => {
+                  const list = [];
+                  this.rows.forEach((row) => {
+                    const value = this.getValueFromRow(row, column.name);
+                    if (value && !list.includes(value)) {
+                      list.push(value);
+                    }
+                  });
+                  list.sort();
+
+                  // Find and update column options
+                  const colIndex = this.columns.findIndex(e => e.name === column.name);
+                  this.$set(this.columns[colIndex].filter, 'options', list.map(name => ({ name, value: name })));
+                });
+        },
+
     },
     computed: {
         rowCount() {
@@ -1121,24 +1145,10 @@ export default {
                     this.filter();
                 }
 
-                // Build options for column
-                const columnsWithAutoOptions = this.vbt_columns.filter(column => column.filter && column.filter.type === 'select' && column.filter.mode === 'multi' && column.filter.auto_options);
-                columnsWithAutoOptions.forEach((column) => {
-                  const list = [];
-                  this.rows.forEach((row) => {
-                    const value = this.getValueFromRow(row, column.name);
-                    if (value && !list.includes(value)) {
-                      list.push(value);
-                    }
-                  });
-                  list.sort();
-
-                  // Find and update column options
-                  const colIndex = this.columns.findIndex(e => e.name === column.name);
-                  this.$set(this.columns[colIndex].filter, 'options', list.map(name => ({ name, value: name })));
-                });
+                // Build options for columns
+                this.buildOptionsForColumns();
             },
-            deep: true
+            deep: true,
         },
         columns: {
             handler: function (newVal, oldVal) {
@@ -1188,7 +1198,6 @@ export default {
                     this.allRowsSelected = false;
                     // EventBus.$emit('unselect-select-all-items-checkbox');
                 }
-
             },
             deep: true
         },
