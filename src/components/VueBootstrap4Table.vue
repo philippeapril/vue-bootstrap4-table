@@ -102,7 +102,17 @@
                             <td v-show="checkbox_rows"></td>
                             <td v-for="(column, key, index) in vbt_columns" :key="index" align="center">
                                 <template v-if="hasFilter(column)">
-                                    <Simple v-if="column.filter.type == 'simple'" :column="column" @update-filter="updateFilter" @clear-filter="clearFilter"></Simple>
+                                    <Simple v-if="column.filter.type == 'simple'" :column="column" @update-filter="updateFilter" @clear-filter="clearFilter">
+                                      <template
+                                        slot-scope="scope"
+                                        slot="clear-simple-filter-icon"
+                                      >
+                                        <slot
+                                          name="clear-simple-filter-icon"
+                                          v-bind="scope"
+                                        />
+                                      </template>
+                                    </Simple>
                                     <MultiSelect v-if="column.filter.type == 'select'" :options="column.filter.options" :column="column" @update-multi-select-filter="updateMultiSelectFilter" @clear-filter="clearFilter"></MultiSelect>
                                 </template>
                             </td>
