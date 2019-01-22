@@ -791,6 +791,10 @@ export default {
         },
         multiSelectFilter(value, selected_options,config) {
 
+            if (value == null || typeof value === "undefined") {
+              value =  "";
+            }
+
             if (typeof value !== "string") {
                 value = value.toString().toLowerCase();
             } else {
@@ -1122,8 +1126,9 @@ export default {
                 columnsWithAutoOptions.forEach((column) => {
                   const list = [];
                   this.rows.forEach((row) => {
-                    if (row[column.name] && !list.includes(row[column.name])) {
-                      list.push(row[column.name]);
+                    const value = this.getValueFromRow(row, column.name);
+                    if (value && !list.includes(value)) {
+                      list.push(value);
                     }
                   });
                   list.sort();
