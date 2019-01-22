@@ -7,7 +7,7 @@
         </div>
         <div :class="{'card-block':card_mode}">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered">
+                <table class="table table-striped table-bordered mb-2">
                     <thead>
                         <tr v-if="showToolsRow">
                             <th :colspan="headerColSpan">
@@ -139,66 +139,63 @@
                         </row>
                         <!-- data rows ends here -->
 
-                        <!-- Pagination row starts here -->
-                        <tr v-if="showPaginationRow" class="footer-pagination-row">
-                            <td :colspan="headerColSpan">
-                                <div class="row">
-                                    <!-- pagination starts here -->
-                                    <div class="col-md-8">
-                                        <div v-if="pagination">
-                                            <Pagination :page.sync="page" :per_page.sync="per_page" :per_page_options="per_page_options" :total="rowCount" :num_of_visibile_pagination_buttons="num_of_visibile_pagination_buttons">
-                                                <template slot="vbt-paginataion-previous-button">
-                                                    <slot name="paginataion-previous-button">
-                                                        &laquo;
-                                                    </slot>
-                                                </template>
-                                                <template slot="vbt-paginataion-next-button">
-                                                    <slot name="paginataion-next-button">
-                                                        &raquo;
-                                                    </slot>
-                                                </template>
-                                            </Pagination>
-                                        </div>
-                                    </div>
-                                    <!-- pagination ends here -->
-
-                                    <!-- pagination info start here -->
-                                    <div class="col-md-4">
-                                        <div class="text-right justify-content-center">
-                                            <template v-if="pagination_info">
-                                                <slot name="pagination-info" :currentPageRowsLength="currentPageRowsLength" :filteredRowsLength="filteredRowsLength" :originalRowsLength="originalRowsLength">
-                                                    <template v-if="currentPageRowsLength != 0">
-                                                        From 1 to {{currentPageRowsLength}} of {{filteredRowsLength}} entries
-                                                    </template>
-                                                    <template v-else>
-                                                        No results found
-                                                    </template>
-                                                    <template>
-                                                        ({{originalRowsLength}} total records)
-                                                    </template>
-                                                </slot>
-                                            </template>
-                                            <template v-if="selected_rows_info && pagination_info && (checkbox_rows || rows_selectable)">
-                                                <slot name="pagination-selected-rows-separator">
-                                                    |
-                                                </slot>
-                                            </template>
-                                            <template v-if="selected_rows_info && (checkbox_rows || rows_selectable)">
-                                                <slot name="selected-rows-info" :selectedItemsCount="selectedItemsCount">
-                                                    {{selectedItemsCount}} rows selected
-                                                </slot>
-                                            </template>
-                                        </div>
-                                    </div>
-                                    <!-- pagination info ends here -->
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- Pagination ends starts here -->
-
                     </tbody>
                 </table>
+
             </div>
+
+            <!-- Pagination row starts here -->
+            <div v-if="showPaginationRow" class="row footer-pagination-row">
+              <!-- pagination starts here -->
+              <div class="col-md-8">
+                <div v-if="pagination">
+                  <Pagination :page.sync="page" :per_page.sync="per_page" :per_page_options="per_page_options" :total="rowCount" :num_of_visibile_pagination_buttons="num_of_visibile_pagination_buttons">
+                    <template slot="vbt-paginataion-previous-button">
+                      <slot name="paginataion-previous-button">
+                        &laquo;
+                      </slot>
+                    </template>
+                    <template slot="vbt-paginataion-next-button">
+                      <slot name="paginataion-next-button">
+                        &raquo;
+                      </slot>
+                    </template>
+                  </Pagination>
+                </div>
+              </div>
+              <!-- pagination ends here -->
+
+              <!-- pagination info start here -->
+              <div class="col-md-4">
+                <div class="text-right justify-content-center">
+                  <template v-if="pagination_info">
+                    <slot name="pagination-info" :currentPageRowsLength="currentPageRowsLength" :filteredRowsLength="filteredRowsLength" :originalRowsLength="originalRowsLength">
+                      <template v-if="currentPageRowsLength != 0">
+                        From 1 to {{currentPageRowsLength}} of {{filteredRowsLength}} entries
+                      </template>
+                      <template v-else>
+                        No results found
+                      </template>
+                      <template>
+                        ({{originalRowsLength}} total records)
+                      </template>
+                    </slot>
+                  </template>
+                  <template v-if="selected_rows_info && pagination_info && (checkbox_rows || rows_selectable)">
+                    <slot name="pagination-selected-rows-separator">
+                    |
+                    </slot>
+                  </template>
+                  <template v-if="selected_rows_info && (checkbox_rows || rows_selectable)">
+                    <slot name="selected-rows-info" :selectedItemsCount="selectedItemsCount">
+                      {{selectedItemsCount}} rows selected
+                    </slot>
+                  </template>
+                </div>
+              </div>
+              <!-- pagination info ends here -->
+            </div>
+            <!-- Pagination ends starts here -->
         </div>
         <div class="card-footer" v-if="card_mode">
             <div class="row">
