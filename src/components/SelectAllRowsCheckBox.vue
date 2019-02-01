@@ -1,8 +1,8 @@
 <template>
     <th class="text-center justify-content-center" @click="$emit('select-all-row-checkbox')">
-        <div class="custom-control custom-checkbox">
+        <div class="custom-control custom-checkbox ml-2 mr-0">
             <input type="checkbox" :indeterminate.prop="showIndeterminateState" class="custom-control-input vbt-checkbox" v-model="allRowsSelected" value=""/>
-            <label class="custom-control-label"></label>
+            <span class="custom-control-indicator"></span>
         </div>
     </th>
 </template>
