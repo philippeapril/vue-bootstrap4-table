@@ -16,7 +16,7 @@
         "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/vue-bootstrap4-table.umd.js",
         "build:es": "rollup --config build/rollup.config.js --format es --file dist/vue-bootstrap4-table.esm.js",
         "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/vue-bootstrap4-table.min.js",
-        "prepare": "npm i && npm run build"
+        "install": "npm run build"
     },
     "dependencies": {
         "lodash": "^4.17.11"
